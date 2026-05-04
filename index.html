@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoWebStudio — Modern Websites for Modern Businesses</title>
+  <meta name="description" content="We craft fast, elegant, and modern websites for small businesses, startups, and local companies. Based in Georgia." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== CURSOR ===== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">
+        <span class="logo-geo">Geo</span><span class="logo-web">Web</span><span class="logo-studio">Studio</span>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#services" class="nav__link">Services</a></li>
+        <li><a href="#portfolio" class="nav__link">Portfolio</a></li>
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn--sm nav__cta">Get a Quote</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+      <div class="hero__grid"></div>
+    </div>
+    <div class="container hero__container">
+      <div class="hero__badge reveal">
+        <span class="badge__dot"></span>
+        <span>Now accepting new clients</span>
+      </div>
+      <h1 class="hero__headline reveal reveal--delay-1">
+        Websites that<br />
+        <span class="gradient-text">work as hard</span><br />
+        as you do.
+      </h1>
+      <p class="hero__sub reveal reveal--delay-2">
+        We design and build fast, elegant, and conversion-driven websites for small businesses, startups, and local companies — from Georgia, for the world.
+      </p>
+      <div class="hero__actions reveal reveal--delay-3">
+        <a href="#contact" class="btn btn--primary">Start a Project <span class="btn__arrow">→</span></a>
+        <a href="#portfolio" class="btn btn--ghost">See Our Work</a>
+      </div>
+      <div class="hero__stats reveal reveal--delay-4">
+        <div class="stat">
+          <span class="stat__num" data-target="30">0</span><span class="stat__num">+</span>
+          <span class="stat__label">Projects Delivered</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num" data-target="100">0</span><span class="stat__num">%</span>
+          <span class="stat__label">Client Satisfaction</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num" data-target="2">0</span>
+          <span class="stat__label">Dedicated Devs</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Services built<br /><em>for growth</em></h2>
+        <p class="section-sub">Every service is crafted to move your business forward — not just look pretty.</p>
+      </div>
+      <div class="services__grid">
+
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="8" width="40" height="28" rx="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 44h16M24 36v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 20l5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Business Websites</h3>
+          <p class="service-card__desc">Clean, professional sites that establish your brand and convert visitors into clients. Mobile-first, SEO-ready, fast.</p>
+          <ul class="service-card__list">
+            <li>Landing Pages</li>
+            <li>Corporate Sites</li>
+            <li>Portfolio Sites</li>
+          </ul>
+          <a href="#contact" class="service-card__link">Get Started →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-1">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
+              <path d="M6 24h36M24 6c-4 6-6 12-6 18s2 12 6 18M24 6c4 6 6 12 6 18s-2 12-6 18" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">E-Commerce</h3>
+          <p class="service-card__desc">Sell online with a storefront that's as easy to manage as it is beautiful. Integrated payments, inventory, and analytics.</p>
+          <ul class="service-card__list">
+            <li>Online Stores</li>
+            <li>Payment Integration</li>
+            <li>Product Management</li>
+          </ul>
+          <a href="#contact" class="service-card__link">Get Started →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-2">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 40V20L24 8l16 12v20H30V28H18v12H8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Local Business Sites</h3>
+          <p class="service-card__desc">Help local customers find you. We build sites optimised for local SEO, Google Maps integration, and trust signals.</p>
+          <ul class="service-card__list">
+            <li>Local SEO</li>
+            <li>Google Integration</li>
+            <li>Reviews & Trust Badges</li>
+          </ul>
+          <a href="#contact" class="service-card__link">Get Started →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-3">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="8" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+              <rect x="26" y="8" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+              <rect x="8" y="26" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+              <rect x="26" y="26" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Web Apps & MVPs</h3>
+          <p class="service-card__desc">Got a startup idea? We'll turn it into a functional MVP fast. Validate your concept without burning your budget.</p>
+          <ul class="service-card__list">
+            <li>MVP Development</li>
+            <li>SaaS Dashboards</li>
+            <li>Custom Web Apps</li>
+          </ul>
+          <a href="#contact" class="service-card__link">Get Started →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-1">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 4L4 16v16l20 12 20-12V16L24 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M4 16l20 12 20-12M24 28v16" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">UI/UX Design</h3>
+          <p class="service-card__desc">Design-first approach. We create wireframes and high-fidelity prototypes before a single line of code is written.</p>
+          <ul class="service-card__list">
+            <li>Wireframing</li>
+            <li>Figma Prototypes</li>
+            <li>Design Systems</li>
+          </ul>
+          <a href="#contact" class="service-card__link">Get Started →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-2">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2"/>
+              <path d="M24 4v6M24 38v6M4 24h6M38 24h6M9.4 9.4l4.2 4.2M34.4 34.4l4.2 4.2M9.4 38.6l4.2-4.2M34.4 13.6l4.2-4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Maintenance & Support</h3>
+          <p class="service-card__desc">We don't disappear after launch. Ongoing updates, performance monitoring, and support whenever you need us.</p>
+          <ul class="service-card__list">
+            <li>Monthly Retainers</li>
+            <li>Performance Reports</li>
+            <li>Content Updates</li>
+          </ul>
+          <a href="#contact" class="service-card__link">Get Started →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO ===== -->
+  <section class="portfolio section" id="portfolio">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Our Work</span>
+        <h2 class="section-title">Projects we're<br /><em>proud of</em></h2>
+        <p class="section-sub">A selection of recent work — every project built with intention and care.</p>
+      </div>
+      <div class="portfolio__grid">
+
+        <div class="project-card project-card--wide reveal">
+          <div class="project-card__img project-card__img--1">
+            <div class="project-card__overlay">
+              <span class="project-card__tag">E-Commerce</span>
+              <h3 class="project-card__title">Artisan Bakery Online Store</h3>
+              <p>Full-featured online store with custom ordering system and delivery zones.</p>
+              <a href="#contact" class="project-card__btn">View Case Study →</a>
+            </div>
+          </div>
+          <div class="project-card__meta">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Stripe</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal--delay-1">
+          <div class="project-card__img project-card__img--2">
+            <div class="project-card__overlay">
+              <span class="project-card__tag">SaaS</span>
+              <h3 class="project-card__title">Startup Analytics Dashboard</h3>
+              <p>Real-time data visualization platform for a Georgian fintech startup.</p>
+              <a href="#contact" class="project-card__btn">View Case Study →</a>
+            </div>
+          </div>
+          <div class="project-card__meta">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Chart.js</span>
+            <span class="project-tag">REST API</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal--delay-2">
+          <div class="project-card__img project-card__img--3">
+            <div class="project-card__overlay">
+              <span class="project-card__tag">Local Business</span>
+              <h3 class="project-card__title">Dental Clinic Website</h3>
+              <p>Appointment booking system with local SEO and Google Maps integration.</p>
+              <a href="#contact" class="project-card__btn">View Case Study →</a>
+            </div>
+          </div>
+          <div class="project-card__meta">
+            <span class="project-tag">HTML/CSS</span>
+            <span class="project-tag">JS</span>
+            <span class="project-tag">Calendly API</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal--delay-1">
+          <div class="project-card__img project-card__img--4">
+            <div class="project-card__overlay">
+              <span class="project-card__tag">Portfolio</span>
+              <h3 class="project-card__title">Architecture Firm Showcase</h3>
+              <p>Premium portfolio site with full-screen gallery and project filtering.</p>
+              <a href="#contact" class="project-card__btn">View Case Study →</a>
+            </div>
+          </div>
+          <div class="project-card__meta">
+            <span class="project-tag">HTML/CSS</span>
+            <span class="project-tag">GSAP</span>
+            <span class="project-tag">Webflow</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="portfolio__cta reveal">
+        <p>Want to see more or discuss your project?</p>
+        <a href="#contact" class="btn btn--primary">Let's Talk →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section" id="about">
+    <div class="container about__container">
+      <div class="about__visual reveal">
+        <div class="about__card">
+          <div class="about__avatar-row">
+            <div class="about__avatar about__avatar--1">
+              <span>G</span>
+            </div>
+            <div class="about__avatar about__avatar--2">
+              <span>N</span>
+            </div>
+          </div>
+          <div class="about__flag">🇬🇪</div>
+          <p class="about__location">Tbilisi, Georgia</p>
+          <div class="about__tech-stack">
+            <span>React</span><span>Node.js</span><span>Next.js</span><span>Figma</span><span>Tailwind</span><span>TypeScript</span>
+          </div>
+        </div>
+        <div class="about__floating-badge about__floating-badge--1">
+          <span class="badge-icon">⚡</span> 7-day turnaround
+        </div>
+        <div class="about__floating-badge about__floating-badge--2">
+          <span class="badge-icon">🏆</span> 30+ happy clients
+        </div>
+      </div>
+      <div class="about__content reveal reveal--delay-1">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-title">Two devs from Georgia,<br /><em>building for the world</em></h2>
+        <p class="about__text">
+          We're Giorgi and Nika — two friends from Tbilisi who met at university and discovered we shared the same obsession: building things on the web that actually look and perform great.
+        </p>
+        <p class="about__text">
+          We got tired of seeing local businesses stuck with outdated, slow, or generic websites. So we started GeoWebStudio — a small studio with big standards. We keep our client list intentionally small so every project gets our full attention.
+        </p>
+        <div class="about__values">
+          <div class="about__value">
+            <span class="value-icon">🎯</span>
+            <div>
+              <strong>Precision over Speed</strong>
+              <p>We don't rush. Every pixel and every line of code is intentional.</p>
+            </div>
+          </div>
+          <div class="about__value">
+            <span class="value-icon">🤝</span>
+            <div>
+              <strong>Direct Communication</strong>
+              <p>You work with us directly — no account managers, no middlemen.</p>
+            </div>
+          </div>
+          <div class="about__value">
+            <span class="value-icon">🚀</span>
+            <div>
+              <strong>Results-Focused</strong>
+              <p>Beautiful design is only half the job. We build for real outcomes.</p>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn--primary">Work With Us →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="process section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">How We Work</span>
+        <h2 class="section-title">Simple process,<br /><em>exceptional results</em></h2>
+      </div>
+      <div class="process__steps">
+        <div class="process__step reveal">
+          <div class="process__num">01</div>
+          <div class="process__line"></div>
+          <h3>Discovery Call</h3>
+          <p>We learn about your business, goals, and vision. Free 30-minute session, no strings attached.</p>
+        </div>
+        <div class="process__step reveal reveal--delay-1">
+          <div class="process__num">02</div>
+          <div class="process__line"></div>
+          <h3>Design & Prototype</h3>
+          <p>We present wireframes and a high-fidelity prototype in Figma before writing any code.</p>
+        </div>
+        <div class="process__step reveal reveal--delay-2">
+          <div class="process__num">03</div>
+          <div class="process__line"></div>
+          <h3>Build & Test</h3>
+          <p>We develop your site with clean code, test across all devices, and optimise for performance.</p>
+        </div>
+        <div class="process__step reveal reveal--delay-3">
+          <div class="process__num">04</div>
+          <div class="process__line"></div>
+          <h3>Launch & Support</h3>
+          <p>We deploy, set up analytics, and stay on call for 30 days post-launch — completely free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section" id="contact">
+    <div class="contact__bg">
+      <div class="contact__orb contact__orb--1"></div>
+      <div class="contact__orb contact__orb--2"></div>
+    </div>
+    <div class="container contact__container">
+      <div class="contact__info reveal">
+        <span class="section-tag">Get in Touch</span>
+        <h2 class="section-title">Let's build<br /><em>something great</em></h2>
+        <p class="contact__sub">Tell us about your project — we'll get back to you within 24 hours with a plan and a quote.</p>
+        <div class="contact__details">
+          <a href="mailto:hello@geowebstudio.ge" class="contact__detail">
+            <span class="contact__detail-icon">✉</span>
+            hello@geowebstudio.ge
+          </a>
+          <a href="https://t.me/geowebstudio" class="contact__detail">
+            <span class="contact__detail-icon">✈</span>
+            @geowebstudio on Telegram
+          </a>
+          <div class="contact__detail">
+            <span class="contact__detail-icon">📍</span>
+            Tbilisi, Georgia 🇬🇪
+          </div>
+        </div>
+        <div class="contact__social">
+          <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-link" aria-label="GitHub">gh</a>
+          <a href="#" class="social-link" aria-label="Behance">be</a>
+        </div>
+      </div>
+      <div class="contact__form-wrap reveal reveal--delay-1">
+        <form class="contact__form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@company.com" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="budget">Budget Range</label>
+              <select id="budget" name="budget">
+                <option value="">Select budget</option>
+                <option>Under $500</option>
+                <option>$500 – $1,000</option>
+                <option>$1,000 – $3,000</option>
+                <option>$3,000+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="type">Project Type</label>
+              <select id="type" name="type">
+                <option value="">Select type</option>
+                <option>Business Website</option>
+                <option>E-Commerce</option>
+                <option>Web App / MVP</option>
+                <option>UI/UX Design</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About Your Project</label>
+            <textarea id="message" name="message" rows="4" placeholder="Describe your idea, goals, and timeline..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" id="submitBtn">
+            Send Message <span class="btn__arrow">→</span>
+          </button>
+          <div class="form__success" id="formSuccess">
+            <span>✓</span> Message sent! We'll be in touch within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <a href="#hero" class="nav__logo">
+          <span class="logo-geo">Geo</span><span class="logo-web">Web</span><span class="logo-studio">Studio</span>
+        </a>
+        <p>Crafting modern websites for businesses that want to stand out. Based in Tbilisi, serving worldwide.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#contact">Business Websites</a></li>
+          <li><a href="#contact">E-Commerce</a></li>
+          <li><a href="#contact">Web Apps</a></li>
+          <li><a href="#contact">UI/UX Design</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@geowebstudio.ge">hello@geowebstudio.ge</a></li>
+          <li><a href="https://t.me/geowebstudio">Telegram</a></li>
+          <li><span>Tbilisi, Georgia 🇬🇪</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2025 GeoWebStudio. All rights reserved.</p>
+        <p>Built with ❤️ in Georgia</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
