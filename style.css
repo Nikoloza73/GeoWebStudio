@@ -61,30 +61,6 @@ a { color: inherit; text-decoration: none; }
 
 ul { list-style: none; }
 
-/* ---- Custom Cursor ---- */
-.cursor {
-  width: 8px; height: 8px;
-  background: var(--cyan-400);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background 0.2s;
-}
-.cursor-follower {
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(0, 200, 224, 0.5);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: all 0.12s ease;
-}
-.cursor--hover { width: 16px; height: 16px; background: var(--cyan-500); }
-.cursor-follower--hover { width: 56px; height: 56px; border-color: var(--cyan-400); }
-
 /* ---- Container ---- */
 .container {
   max-width: 1200px;

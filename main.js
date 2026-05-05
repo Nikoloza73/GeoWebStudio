@@ -4,44 +4,6 @@
 
 'use strict';
 
-/* ---- Custom Cursor ---- */
-const cursor = document.getElementById('cursor');
-const cursorFollower = document.getElementById('cursorFollower');
-let mouseX = 0, mouseY = 0;
-let followerX = 0, followerY = 0;
-
-if (cursor && cursorFollower) {
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-  });
-
-  // Smooth follower
-  function animateFollower() {
-    followerX += (mouseX - followerX) * 0.1;
-    followerY += (mouseY - followerY) * 0.1;
-    cursorFollower.style.left = followerX + 'px';
-    cursorFollower.style.top = followerY + 'px';
-    requestAnimationFrame(animateFollower);
-  }
-  animateFollower();
-
-  // Hover states
-  const hoverTargets = document.querySelectorAll('a, button, .service-card, .project-card, input, textarea, select');
-  hoverTargets.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.classList.add('cursor--hover');
-      cursorFollower.classList.add('cursor-follower--hover');
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.classList.remove('cursor--hover');
-      cursorFollower.classList.remove('cursor-follower--hover');
-    });
-  });
-}
-
 /* ---- Nav Scroll Behaviour ---- */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
