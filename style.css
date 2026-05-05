@@ -155,6 +155,7 @@ ul { list-style: none; }
   color: var(--navy-950);
 }
 .btn--primary:hover {
+  cursor: pointer;
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(0,200,224,0.4);
 }
@@ -176,7 +177,9 @@ ul { list-style: none; }
 
 /* ---- Reveal Animations ---- */
 .reveal {
+  font-size: 30px;
   opacity: 0;
+  line-height: 1.2;
   transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
@@ -214,6 +217,7 @@ ul { list-style: none; }
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 800;
+  padding: 40px 0;
   margin-right: auto;
   letter-spacing: -0.02em;
 }
@@ -342,7 +346,7 @@ ul { list-style: none; }
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 7vw, 5.2rem);
   font-weight: 800;
-  line-height: 1.05;
+  line-height: 1.2;
   color: var(--white);
   margin-bottom: 24px;
   letter-spacing: -0.03em;

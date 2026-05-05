@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — GeoWebStudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/dist/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy-950: #03070f;
+  --navy-900: #060e1e;
+  --navy-800: #0a1628;
+  --navy-700: #0f2040;
+  --cyan-500: #00c8e0;
+  --cyan-400: #22ddf5;
+  --cyan-300: #6ef0ff;
+  --white: #f0f6ff;
+  --white-dim: rgba(240,246,255,.55);
+  --white-faint: rgba(240,246,255,.07);
+  --border: rgba(34,221,245,.12);
+  --border-bright: rgba(34,221,245,.25);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --radius: 14px;
+  --sidebar-w: 240px;
+}
+
+html, body { height: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--navy-950);
+  color: var(--white);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy-900); }
+::-webkit-scrollbar-thumb { background: var(--cyan-500); border-radius: 2px; }
+
+#app { display: flex; height: 100vh; overflow: hidden; }
+
+/* Sidebar */
+#sidebar {
+  width: var(--sidebar-w);
+  background: var(--navy-900);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  flex-shrink: 0; overflow-y: auto;
+}
+
+.logo {
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--cyan-500), var(--cyan-300));
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 14px;
+  color: var(--navy-900); flex-shrink: 0;
+}
+.logo-name { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: .04em; }
+.logo-name span { color: var(--cyan-400); }
+.logo-sub { font-size: 10px; color: var(--white-dim); letter-spacing: .06em; text-transform: uppercase; }
+
+nav { flex: 1; padding: 14px 10px; }
+.nav-section {
+  font-size: 10px; font-weight: 600;
+  color: rgba(34,221,245,.4);
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: 10px 12px 5px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px; cursor: pointer;
+  font-size: 13px; color: var(--white-dim);
+  transition: background .18s, color .18s;
+  margin-bottom: 2px; position: relative; user-select: none;
+}
+.nav-item:hover { background: var(--white-faint); color: var(--white); }
+.nav-item.active { background: rgba(34,221,245,.1); color: var(--cyan-400); }
+.nav-item.active::before {
+  content: ''; position: absolute;
+  left: 0; top: 6px; bottom: 6px;
+  width: 2px; background: var(--cyan-400);
+  border-radius: 0 2px 2px 0;
+}
+.nav-item i { font-size: 17px; }
+.nav-badge {
+  margin-left: auto;
+  background: rgba(34,221,245,.12); color: var(--cyan-400);
+  font-size: 10px; font-weight: 600;
+  padding: 2px 7px; border-radius: 20px;
+  border: 1px solid rgba(34,221,245,.2);
+}
+
+.sidebar-footer { padding: 12px 10px; border-top: 1px solid var(--border); }
+.user-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 10px; cursor: pointer;
+  transition: background .18s;
+}
+.user-row:hover { background: var(--white-faint); }
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(34,221,245,.12);
+  border: 1px solid var(--border-bright);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  color: var(--cyan-400); flex-shrink: 0;
+}
+.user-name { font-size: 13px; font-weight: 500; }
+.user-role { font-size: 10px; color: var(--white-dim); }
+
+/* Main */
+#main { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+
+#topbar {
+  height: 58px; background: var(--navy-900);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 28px; gap: 10px; flex-shrink: 0;
+}
+#page-title {
+  flex: 1; font-family: var(--font-display);
+  font-size: 15px; font-weight: 700; letter-spacing: .02em;
+}
+.topbar-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 9px;
+  border: 1px solid var(--border-bright);
+  background: transparent; color: var(--white-dim);
+  cursor: pointer; font-size: 12px; font-family: var(--font-body);
+  text-decoration: none;
+  transition: background .18s, color .18s;
+}
+.topbar-btn:hover { background: var(--white-faint); color: var(--white); }
+.topbar-btn i { font-size: 16px; }
+.topbar-btn.primary {
+  background: var(--cyan-500); color: var(--navy-900);
+  border-color: var(--cyan-500); font-weight: 600;
+}
+.topbar-btn.primary:hover { background: var(--cyan-400); border-color: var(--cyan-400); }
+
+#content { flex: 1; overflow-y: auto; padding: 26px 28px; }
+
+.page { display: none; }
+.page.active { display: block; }
+
+/* Cards */
+.card {
+  background: var(--navy-800); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px; margin-bottom: 18px;
+}
+.card-title {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  letter-spacing: .03em; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-title span { flex: 1; }
+.card-title i { color: var(--cyan-400); }
+
+/* Metrics */
+.metrics {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px; margin-bottom: 18px;
+}
+.metric {
+  background: var(--navy-800); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 18px;
+  position: relative; overflow: hidden; transition: border-color .2s;
+}
+.metric:hover { border-color: var(--border-bright); }
+.metric::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: linear-gradient(90deg, var(--cyan-500), transparent);
+  opacity: .4;
+}
+.metric-label {
+  font-size: 10px; font-weight: 600;
+  color: rgba(34,221,245,.5);
+  text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px;
+}
+.metric-val { font-family: var(--font-display); font-size: 26px; font-weight: 700; }
+.metric-delta { font-size: 11px; margin-top: 5px; display: flex; align-items: center; gap: 3px; }
+.metric-delta.up { color: var(--cyan-300); }
+.metric-delta.down { color: #f09595; }
+
+.row2 { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; margin-bottom: 18px; }
+@media (max-width: 900px) { .row2 { grid-template-columns: 1fr; } }
+
+/* Bar chart */
+.bar-chart { display: flex; align-items: flex-end; gap: 7px; height: 100px; }
+.bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.bar {
+  width: 100%;
+  background: linear-gradient(180deg, var(--cyan-400), var(--cyan-500));
+  border-radius: 4px 4px 0 0; min-height: 4px; opacity: .65;
+  transition: opacity .18s;
+}
+.bar:hover { opacity: 1; }
+.bar-lbl { font-size: 10px; color: var(--white-dim); }
+
+/* Activity */
+.activity-list { display: flex; flex-direction: column; gap: 12px; }
+.activity-item { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; }
+.act-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  margin-top: 3px; flex-shrink: 0; box-shadow: 0 0 6px currentColor;
+}
+.act-dot.cyan { background: var(--cyan-400); color: var(--cyan-400); }
+.act-dot.blue { background: #378add; color: #378add; }
+.act-dot.amber { background: #ef9f27; color: #ef9f27; }
+.act-body { flex: 1; }
+.act-body b { font-weight: 500; color: var(--white); }
+.act-body span { color: var(--white-dim); }
+.act-time { color: rgba(240,246,255,.3); white-space: nowrap; font-size: 11px; }
+
+/* Table */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th {
+  text-align: left; font-size: 10px; font-weight: 600;
+  color: rgba(34,221,245,.5);
+  text-transform: uppercase; letter-spacing: .08em;
+  padding: 0 16px 12px; border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid rgba(34,221,245,.05);
+  color: var(--white-dim);
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover td { background: rgba(34,221,245,.03); color: var(--white); }
+.post-title { font-weight: 500; color: var(--white); }
+.post-cat { font-size: 11px; color: rgba(240,246,255,.3); margin-top: 2px; }
+
+/* Badges */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px;
+}
+.badge i { font-size: 11px; }
+.badge.published { background: rgba(110,240,255,.1); color: var(--cyan-300); border: 1px solid rgba(110,240,255,.2); }
+.badge.draft { background: var(--white-faint); color: var(--white-dim); border: 1px solid rgba(240,246,255,.08); }
+.badge.scheduled { background: rgba(239,159,39,.12); color: #ef9f27; border: 1px solid rgba(239,159,39,.2); }
+
+/* Toolbar */
+.toolbar { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+.search-wrap { position: relative; flex: 1; min-width: 160px; max-width: 300px; }
+.search-wrap i {
+  position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+  color: rgba(34,221,245,.4); font-size: 15px; pointer-events: none;
+}
+.search-wrap input { padding: 8px 10px 8px 35px; width: 100%; }
+
+input, select, textarea {
+  font-family: var(--font-body); font-size: 13px;
+  background: var(--navy-800);
+  border: 1px solid var(--border-bright);
+  border-radius: 9px; color: var(--white);
+  padding: 8px 12px; outline: none; transition: border-color .18s, box-shadow .18s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--cyan-500);
+  box-shadow: 0 0 0 3px rgba(0,200,224,.1);
+}
+input::placeholder { color: rgba(240,246,255,.2); }
+select option { background: var(--navy-800); }
+
+.action-icons { display: flex; gap: 10px; }
+.action-icons i { font-size: 16px; cursor: pointer; color: var(--white-dim); transition: color .15s; }
+.action-icons i:hover { color: var(--cyan-400); }
+.action-icons .ti-trash:hover { color: #f09595; }
+
+/* Settings */
+.settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 860px) { .settings-grid { grid-template-columns: 1fr; } }
+
+.setting-card-title {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  letter-spacing: .03em; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 9px;
+}
+.setting-card-title i { color: var(--cyan-400); font-size: 17px; }
+
+.form-group { margin-bottom: 13px; }
+.form-label {
+  font-size: 11px; font-weight: 600;
+  color: rgba(34,221,245,.55);
+  text-transform: uppercase; letter-spacing: .07em;
+  margin-bottom: 6px; display: block;
+}
+.form-input { width: 100%; }
+
+.toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid rgba(34,221,245,.07);
+}
+.toggle-row:last-of-type { border-bottom: none; }
+.toggle-info p { font-size: 13px; font-weight: 500; color: var(--white); }
+.toggle-info span { font-size: 11px; color: var(--white-dim); }
+
+.toggle { position: relative; width: 38px; height: 21px; flex-shrink: 0; }
+.toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.toggle-track {
+  position: absolute; inset: 0;
+  background: rgba(240,246,255,.1); border: 1px solid var(--border-bright);
+  border-radius: 20px; cursor: pointer; transition: background .2s, border-color .2s;
+}
+.toggle input:checked + .toggle-track { background: rgba(0,200,224,.25); border-color: var(--cyan-500); }
+.toggle-thumb {
+  position: absolute; width: 15px; height: 15px;
+  background: var(--white-dim); border-radius: 50%;
+  top: 3px; left: 3px; transition: left .2s, background .2s; pointer-events: none;
+}
+.toggle input:checked ~ .toggle-thumb { left: 20px; background: var(--cyan-400); }
+
+.save-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 18px; background: var(--cyan-500); color: var(--navy-900);
+  border: none; border-radius: 9px; font-family: var(--font-body);
+  font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 14px;
+  transition: background .18s;
+}
+.save-btn:hover { background: var(--cyan-400); }
+.save-btn i { font-size: 15px; }
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">G</div>
+      <div>
+        <div class="logo-name">GEO<span>WEB</span>STUDIO</div>
+        <div class="logo-sub">Admin panel</div>
+      </div>
+    </a>
+
+    <nav>
+      <div class="nav-section">Overview</div>
+      <div class="nav-item active" data-page="dashboard">
+        <i class="ti ti-chart-bar"></i> Dashboard
+      </div>
+      <div class="nav-section">Manage</div>
+      <div class="nav-item" data-page="posts">
+        <i class="ti ti-file-text"></i> Posts &amp; Content
+        <span class="nav-badge">12</span>
+      </div>
+      <div class="nav-section">System</div>
+      <div class="nav-item" data-page="settings">
+        <i class="ti ti-settings"></i> Settings
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-row">
+        <div class="avatar">GW</div>
+        <div>
+          <div class="user-name">Admin</div>
+          <div class="user-role">GeoWebStudio</div>
+        </div>
+        <i class="ti ti-chevron-down" style="font-size:13px;color:var(--white-dim);margin-left:auto"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div id="main">
+    <div id="topbar">
+      <span id="page-title">Dashboard</span>
+      <a href="index.html" class="topbar-btn">
+        <i class="ti ti-arrow-left"></i> Back to site
+      </a>
+      <button class="topbar-btn"><i class="ti ti-bell"></i></button>
+      <button class="topbar-btn primary" id="action-btn">
+        <i class="ti ti-plus"></i>
+        <span id="action-label">New post</span>
+      </button>
+    </div>
+
+    <div id="content">
+
+      <!-- Dashboard -->
+      <div class="page active" id="page-dashboard">
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-label">Total posts</div>
+            <div class="metric-val">284</div>
+            <div class="metric-delta up"><i class="ti ti-trending-up"></i> +18 this month</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Page views</div>
+            <div class="metric-val">42.1k</div>
+            <div class="metric-delta up"><i class="ti ti-trending-up"></i> +12% vs last month</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Comments</div>
+            <div class="metric-val">1,093</div>
+            <div class="metric-delta up"><i class="ti ti-trending-up"></i> +7% vs last month</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Bounce rate</div>
+            <div class="metric-val">38%</div>
+            <div class="metric-delta down"><i class="ti ti-trending-down"></i> −3% vs last month</div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="card">
+            <div class="card-title"><i class="ti ti-chart-line"></i><span>Page views — last 7 days</span></div>
+            <div class="bar-chart" id="bar-chart"></div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="ti ti-activity"></i><span>Recent activity</span></div>
+            <div class="activity-list">
+              <div class="activity-item"><div class="act-dot cyan"></div><div class="act-body"><b>Post published</b><br><span>"How to scale your startup"</span></div><div class="act-time">2m ago</div></div>
+              <div class="activity-item"><div class="act-dot blue"></div><div class="act-body"><b>Draft saved</b><br><span>"Q3 product roundup"</span></div><div class="act-time">1h ago</div></div>
+              <div class="activity-item"><div class="act-dot amber"></div><div class="act-body"><b>Comment flagged</b><br><span>On "Remote work tips"</span></div><div class="act-time">3h ago</div></div>
+              <div class="activity-item"><div class="act-dot cyan"></div><div class="act-body"><b>Post published</b><br><span>"Design systems in 2025"</span></div><div class="act-time">5h ago</div></div>
+              <div class="activity-item"><div class="act-dot blue"></div><div class="act-body"><b>Draft created</b><br><span>"AI tools for writers"</span></div><div class="act-time">Yesterday</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:0;overflow:hidden">
+          <div style="padding:18px 22px 0"><div class="card-title"><i class="ti ti-stars"></i><span>Top posts this month</span></div></div>
+          <table class="data-table">
+            <thead><tr><th>Title</th><th>Views</th><th>Comments</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><div class="post-title">How to scale your startup</div><div class="post-cat">Business</div></td><td>8,241</td><td>43</td><td><span class="badge published"><i class="ti ti-circle-check"></i>Published</span></td></tr>
+              <tr><td><div class="post-title">Design systems in 2025</div><div class="post-cat">Design</div></td><td>6,102</td><td>31</td><td><span class="badge published"><i class="ti ti-circle-check"></i>Published</span></td></tr>
+              <tr><td><div class="post-title">Remote work tips</div><div class="post-cat">Productivity</div></td><td>4,870</td><td>19</td><td><span class="badge published"><i class="ti ti-circle-check"></i>Published</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Posts -->
+      <div class="page" id="page-posts">
+        <div class="toolbar">
+          <div class="search-wrap">
+            <i class="ti ti-search"></i>
+            <input type="text" id="post-search" placeholder="Search posts…" oninput="filterPosts()">
+          </div>
+          <select id="post-filter" onchange="filterPosts()">
+            <option value="">All statuses</option>
+            <option value="published">Published</option>
+            <option value="draft">Draft</option>
+            <option value="scheduled">Scheduled</option>
+          </select>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <table class="data-table" style="table-layout:fixed;width:100%">
+            <thead>
+              <tr>
+                <th style="width:36%">Title</th>
+                <th style="width:14%">Category</th>
+                <th style="width:14%">Date</th>
+                <th style="width:10%">Views</th>
+                <th style="width:14%">Status</th>
+                <th style="width:12%">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="posts-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="page" id="page-settings">
+        <div class="settings-grid">
+          <div class="card">
+            <div class="setting-card-title"><i class="ti ti-world"></i>Site settings</div>
+            <div class="form-group"><label class="form-label">Site name</label><input class="form-input" type="text" value="GeoWebStudio"></div>
+            <div class="form-group"><label class="form-label">Site URL</label><input class="form-input" type="text" value="https://geowebstudio.ge"></div>
+            <div class="form-group"><label class="form-label">Tagline</label><input class="form-input" type="text" value="Premium web design · Tbilisi"></div>
+            <div class="form-group"><label class="form-label">Language</label>
+              <select class="form-input"><option>English (EN)</option><option>Georgian (KA)</option></select>
+            </div>
+            <button class="save-btn"><i class="ti ti-device-floppy"></i>Save changes</button>
+          </div>
+          <div class="card">
+            <div class="setting-card-title"><i class="ti ti-bell"></i>Notifications</div>
+            <div class="toggle-row"><div class="toggle-info"><p>New comments</p><span>Notify when a comment is posted</span></div><label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label></div>
+            <div class="toggle-row"><div class="toggle-info"><p>New project requests</p><span>Notify on new contact form submissions</span></div><label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label></div>
+            <div class="toggle-row"><div class="toggle-info"><p>Flagged content</p><span>Notify when content is flagged</span></div><label class="toggle"><input type="checkbox"><div class="toggle-track"></div><div class="toggle-thumb"></div></label></div>
+            <div class="toggle-row"><div class="toggle-info"><p>Weekly digest</p><span>Send weekly analytics summary</span></div><label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label></div>
+          </div>
+          <div class="card">
+            <div class="setting-card-title"><i class="ti ti-lock"></i>Security</div>
+            <div class="form-group"><label class="form-label">Current password</label><input class="form-input" type="password" placeholder="••••••••"></div>
+            <div class="form-group"><label class="form-label">New password</label><input class="form-input" type="password" placeholder="••••••••"></div>
+            <div class="form-group"><label class="form-label">Confirm password</label><input class="form-input" type="password" placeholder="••••••••"></div>
+            <div class="toggle-row"><div class="toggle-info"><p>Two-factor auth</p><span>Require 2FA on sign-in</span></div><label class="toggle"><input type="checkbox"><div class="toggle-track"></div><div class="toggle-thumb"></div></label></div>
+            <button class="save-btn"><i class="ti ti-device-floppy"></i>Update password</button>
+          </div>
+          <div class="card">
+            <div class="setting-card-title"><i class="ti ti-mail"></i>Contact info</div>
+            <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" value="hello@geowebstudio.ge"></div>
+            <div class="form-group"><label class="form-label">Telegram</label><input class="form-input" type="text" value="@geowebstudio"></div>
+            <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="text" placeholder="+995 …"></div>
+            <div class="toggle-row"><div class="toggle-info"><p>Show contact form</p><span>Display form on the main site</span></div><label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label></div>
+            <button class="save-btn"><i class="ti ti-device-floppy"></i>Save contact info</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+const posts = [
+  {title:"How to scale your startup",    cat:"Business",    date:"May 1, 2026",  views:8241, status:"published"},
+  {title:"Design systems in 2025",       cat:"Design",      date:"Apr 28, 2026", views:6102, status:"published"},
+  {title:"Remote work tips",             cat:"Productivity",date:"Apr 20, 2026", views:4870, status:"published"},
+  {title:"Q3 product roundup",           cat:"Product",     date:"May 10, 2026", views:0,    status:"draft"},
+  {title:"AI tools for writers",         cat:"Technology",  date:"May 12, 2026", views:0,    status:"draft"},
+  {title:"Building a brand in 2026",     cat:"Marketing",   date:"May 15, 2026", views:0,    status:"scheduled"},
+  {title:"The async-first team",         cat:"Business",    date:"Apr 15, 2026", views:3210, status:"published"},
+  {title:"CSS tips & tricks",            cat:"Design",      date:"Apr 10, 2026", views:2890, status:"published"},
+  {title:"Open source spotlight",        cat:"Technology",  date:"May 20, 2026", views:0,    status:"scheduled"},
+  {title:"Mental health at work",        cat:"Culture",     date:"Apr 5, 2026",  views:5430, status:"published"},
+  {title:"Year in review",               cat:"General",     date:"Mar 28, 2026", views:7100, status:"published"},
+  {title:"Hiring for culture fit",       cat:"Business",    date:"May 8, 2026",  views:0,    status:"draft"},
+];
+
+function badge(s) {
+  const icons = {published:'ti-circle-check', draft:'ti-pencil', scheduled:'ti-clock'};
+  return `<span class="badge ${s}"><i class="ti ${icons[s]}"></i>${s.charAt(0).toUpperCase()+s.slice(1)}</span>`;
+}
+
+function renderPosts(data) {
+  document.getElementById('posts-tbody').innerHTML = data.map(p => `
+    <tr>
+      <td><div class="post-title">${p.title}</div></td>
+      <td style="font-size:12px;color:rgba(240,246,255,.35)">${p.cat}</td>
+      <td style="font-size:12px;color:rgba(240,246,255,.35)">${p.date}</td>
+      <td>${p.views > 0 ? p.views.toLocaleString() : '—'}</td>
+      <td>${badge(p.status)}</td>
+      <td><div class="action-icons"><i class="ti ti-edit" title="Edit"></i><i class="ti ti-trash" title="Delete"></i></div></td>
+    </tr>`).join('');
+}
+
+function filterPosts() {
+  const q = document.getElementById('post-search').value.toLowerCase();
+  const f = document.getElementById('post-filter').value;
+  renderPosts(posts.filter(p =>
+    (!q || p.title.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)) &&
+    (!f || p.status === f)
+  ));
+}
+
+renderPosts(posts);
+
+const bars = [{d:'Mon',v:58},{d:'Tue',v:74},{d:'Wed',v:61},{d:'Thu',v:89},{d:'Fri',v:95},{d:'Sat',v:67},{d:'Sun',v:72}];
+const maxV = Math.max(...bars.map(b => b.v));
+document.getElementById('bar-chart').innerHTML = bars.map(b =>
+  `<div class="bar-wrap"><div class="bar" style="height:${Math.round(b.v/maxV*90)}px" title="${b.v}k views"></div><div class="bar-lbl">${b.d}</div></div>`
+).join('');
+
+const pageConfig = {
+  dashboard: {title:'Dashboard',       action:'New post'},
+  posts:     {title:'Posts & content', action:'New post'},
+  settings:  {title:'Settings',        action:null},
+};
+
+document.querySelectorAll('.nav-item[data-page]').forEach(el => {
+  el.addEventListener('click', () => {
+    const p = el.dataset.page;
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('page-'+p).classList.add('active');
+    document.getElementById('page-title').textContent = pageConfig[p].title;
+    const btn = document.getElementById('action-btn');
+    if (pageConfig[p].action) { btn.style.display='flex'; document.getElementById('action-label').textContent=pageConfig[p].action; }
+    else btn.style.display='none';
+  });
+});
+</script>
+</body>
+</html>
